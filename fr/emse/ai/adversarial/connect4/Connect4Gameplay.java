@@ -35,7 +35,7 @@ public class Connect4Gameplay {
         }
         // Game is going on ...
         while (!game.isTerminal(state)) {
-            System.out.println("=============");
+            System.out.println("==============");
             System.out.println(game.stringify(state));
             int action = 0;
             if (game.getPlayer(state).equals(humanPlayer)) {
@@ -44,15 +44,18 @@ public class Connect4Gameplay {
                     action = humanScanner.nextInt();
                 }
             } else {
-                action = minimaxSearch.makeDecision(state);
+                /*
+                For most parts, game runs just fine. However ...
+                For some reason, solving algorithms aren't working as intended. AlphaBeta and Minimax go on infinite loops,
+                while Iterative Deepeding seems to "work" (as in it expands nodes) but doesn't make any non-trivial decisions... :(
+                 */
+                action = iterativeDeepeningAlphaBetaSearch.makeDecision(state);
                 System.out.println("Computer made action " + action);
-                System.out.println("Metrics for Iterative Alpha-Beta Pruning: " + minimaxSearch.getMetrics());/*
-                alphabetaSearch.makeDecision(state);
+                System.out.println("Metrics for Iterative Alpha-Beta Pruning: " + iterativeDeepeningAlphaBetaSearch.getMetrics());
+                /*alphabetaSearch.makeDecision(state);
                 System.out.println("Metrics for Alpha-Beta Pruning: " + alphabetaSearch.getMetrics());
-                minimaxSearch.makeDecision(state);*/
-/*
-                System.out.println("Metrics for Minimax: " + minimaxSearch.getMetrics());
-*/
+                minimaxSearch.makeDecision(state);
+                System.out.println("Metrics for Minimax: " + minimaxSearch.getMetrics());*/
             }
             state = game.getResult(state, action);
         }

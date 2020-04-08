@@ -46,7 +46,7 @@ public class Connect4Game implements Game<String[][], Integer, String> {
 
     /*
     I modeled the actions as the column number 1-7 until a designated column is filled. To check if an action is
-    possible, we only need to check whether it's summit is full or not, i.e. state[1][action] = "_" i = 1 being
+    possible, we only need to check whether it's summit is full or not, i.e. state[6][action] = "_" i = 1 being
     the summit.
      */
     @Override
@@ -149,7 +149,7 @@ public class Connect4Game implements Game<String[][], Integer, String> {
             }
         }
         if (isDraw)
-            return 0;
+            return 0.5;
         else {
             return (state[0][0].equals(player)) ? 0 : 1;
         }

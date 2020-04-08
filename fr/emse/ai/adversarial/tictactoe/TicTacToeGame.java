@@ -117,7 +117,7 @@ public class TicTacToeGame implements Game<String[][], Integer, String> {
         if (isDraw)
             return 0.5;
         else {
-            return (state[0][0].equals(player)) ? 0 : 1;
+            return (state[0][0].equals(player)) ? 0: 1;
         }
     }
 

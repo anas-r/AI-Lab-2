@@ -7,22 +7,22 @@ public class SimpleMinimax {
         if (tree.isLeaf()) {
             return tree.getValue();
         } else {
-            Iterator<SimpleTwoPlyGameTree<Integer>> childrenIterator = tree.getChildren().iterator();
+            Iterator<SimpleTwoPlyGameTree<Integer>> childrenIterator;
+            childrenIterator = tree.getChildren().iterator();
+            int val;
             if (tree.isMax()) {
-                int val = Integer.MIN_VALUE;
+                val = Integer.MIN_VALUE;
                 while (childrenIterator.hasNext()) {
                     val = Math.max(val, solve(childrenIterator.next()));
                 }
-                tree.setValue(val);
-                return val;
             } else {
-                int val = Integer.MAX_VALUE;
+                val = Integer.MAX_VALUE;
                 while (childrenIterator.hasNext()) {
                     val = Math.min(val, solve(childrenIterator.next()));
                 }
-                tree.setValue(val);
-                return val;
             }
+            tree.setValue(val);
+            return val;
         }
     }
 }
